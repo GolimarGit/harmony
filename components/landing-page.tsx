@@ -7,27 +7,31 @@ export default function LandingPage() {
     <div className="flex flex-col min-h-screen">
       <header className="border-b">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2" prefetch={false}>
             <span className="text-xl font-bold text-rose-500">Harmony</span>
           </Link>
           <nav className="hidden md:flex gap-6">
-            <Link href="#features" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link href="#features" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
               Features
             </Link>
-            <Link href="#pricing" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link href="#pricing" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
               Pricing
             </Link>
-            <Link href="#testimonials" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link
+              href="#testimonials"
+              className="text-sm font-medium hover:underline underline-offset-4"
+              prefetch={false}
+            >
               Testimonials
             </Link>
           </nav>
           <div className="flex items-center gap-4">
-            <Link href="/login">
+            <Link href="/login" prefetch={true}>
               <Button variant="ghost" size="sm">
                 Log in
               </Button>
             </Link>
-            <Link href="/signup">
+            <Link href="/signup" prefetch={true}>
               <Button size="sm" className="bg-rose-500 hover:bg-rose-600">
                 Start for free
               </Button>
@@ -49,7 +53,7 @@ export default function LandingPage() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Link href="/signup">
+                  <Link href="/signup" prefetch={true}>
                     <Button size="lg" className="bg-rose-500 hover:bg-rose-600">
                       Start for free
                     </Button>
@@ -60,7 +64,7 @@ export default function LandingPage() {
               <div className="mx-auto lg:mx-0 lg:flex lg:justify-center">
                 <div className="rounded-lg border bg-white p-4 shadow-lg">
                   <img
-                    alt="TaskMaster App Interface"
+                    alt="Harmony App Interface"
                     className="aspect-video overflow-hidden rounded-lg object-cover"
                     src="/placeholder.svg?height=600&width=800"
                   />
@@ -143,13 +147,13 @@ export default function LandingPage() {
           <div className="flex flex-col gap-2 md:gap-4">
             <h3 className="text-sm font-medium">Company</h3>
             <nav className="flex flex-col gap-2">
-              <Link href="#" className="text-sm hover:underline">
+              <Link href="#" className="text-sm hover:underline" prefetch={false}>
                 About
               </Link>
-              <Link href="#" className="text-sm hover:underline">
+              <Link href="#" className="text-sm hover:underline" prefetch={false}>
                 Careers
               </Link>
-              <Link href="#" className="text-sm hover:underline">
+              <Link href="#" className="text-sm hover:underline" prefetch={false}>
                 Contact
               </Link>
             </nav>
@@ -157,13 +161,13 @@ export default function LandingPage() {
           <div className="flex flex-col gap-2 md:gap-4">
             <h3 className="text-sm font-medium">Help</h3>
             <nav className="flex flex-col gap-2">
-              <Link href="#" className="text-sm hover:underline">
+              <Link href="#" className="text-sm hover:underline" prefetch={false}>
                 Support
               </Link>
-              <Link href="#" className="text-sm hover:underline">
+              <Link href="#" className="text-sm hover:underline" prefetch={false}>
                 Terms
               </Link>
-              <Link href="#" className="text-sm hover:underline">
+              <Link href="#" className="text-sm hover:underline" prefetch={false}>
                 Privacy
               </Link>
             </nav>

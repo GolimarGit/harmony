@@ -73,13 +73,13 @@ export default function DashboardSidebar() {
   return (
     <div className="flex h-full w-64 flex-col border-r bg-white">
       <div className="flex h-16 items-center border-b px-4">
-        <Link href="/dashboard" className="flex items-center gap-2">
+        <Link href="/dashboard" className="flex items-center gap-2" prefetch={true}>
           <span className="text-xl font-bold text-rose-500">Harmony</span>
         </Link>
       </div>
       <ScrollArea className="flex-1 px-2 py-4">
         <div className="space-y-1">
-          <Link href="/dashboard">
+          <Link href="/dashboard" prefetch={true}>
             <Button
               variant="ghost"
               className={cn("w-full justify-start", pathname === "/dashboard" && "bg-gray-100 font-medium")}
@@ -88,7 +88,7 @@ export default function DashboardSidebar() {
               Today
             </Button>
           </Link>
-          <Link href="/dashboard/inbox">
+          <Link href="/dashboard/inbox" prefetch={true}>
             <Button
               variant="ghost"
               className={cn("w-full justify-start", pathname === "/dashboard/inbox" && "bg-gray-100 font-medium")}
@@ -97,7 +97,7 @@ export default function DashboardSidebar() {
               Inbox
             </Button>
           </Link>
-          <Link href="/dashboard/upcoming">
+          <Link href="/dashboard/upcoming" prefetch={true}>
             <Button
               variant="ghost"
               className={cn("w-full justify-start", pathname === "/dashboard/upcoming" && "bg-gray-100 font-medium")}
@@ -106,7 +106,7 @@ export default function DashboardSidebar() {
               Upcoming
             </Button>
           </Link>
-          <Link href="/dashboard/completed">
+          <Link href="/dashboard/completed" prefetch={true}>
             <Button
               variant="ghost"
               className={cn("w-full justify-start", pathname === "/dashboard/completed" && "bg-gray-100 font-medium")}

@@ -5,12 +5,12 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
+import { getSupabaseClient } from "@/lib/supabase-client"
 
 export default function LoginForm() {
   const [email, setEmail] = useState("")
@@ -18,33 +18,34 @@ export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
-  const supabase = createClientComponentClient({
-    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL || "https://nohpoosgxzbpnnupchsh.supabase.co",
-    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
-  })
+  const supabase = getSupabaseClient()
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-
+  
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
-
+  
       if (error) {
         throw error
       }
-
+  
       toast({
         title: "Success!",
         description: "You have successfully signed in.",
       })
-
-      router.push("/dashboard")
-      router.refresh()
+  
+      // Add a small delay before navigation to ensure auth state is properly set
+      setTimeout(() => {
+        router.push("/dashboard")
+        router.refresh()
+      }, 500)
     } catch (error: any) {
+      console.error("Authentication error:", error)
       toast({
         title: "Error signing in",
         description: error.message,

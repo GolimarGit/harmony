@@ -1,14 +1,13 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
-import { cookies } from "next/headers"
 import TaskList from "@/components/tasks/task-list"
+import { createServerSupabaseClient } from "@/lib/supabase-server"
 
 export default async function CompletedPage() {
-  const supabase = createServerComponentClient({ cookies })
+  const supabase = await createServerSupabaseClient()
 
   // Fetch completed tasks
   const { data: tasks } = await supabase
     .from("tasks")
-    .select("*")
+    .select("id, title, description, completed, due_date, priority, project_id, created_at")
     .eq("completed", true)
     .order("created_at", { ascending: false })
 

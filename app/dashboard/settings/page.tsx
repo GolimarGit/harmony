@@ -1,15 +1,15 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
-import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import UserSettingsForm from "@/components/settings/user-settings-form"
+import { createServerSupabaseClient } from "@/lib/supabase-server"
 
 export default async function SettingsPage() {
-  const supabase = createServerComponentClient({ cookies })
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
+  const supabase = await createServerSupabaseClient()
 
-  if (!session) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
     redirect("/login")
   }
 
@@ -20,7 +20,7 @@ export default async function SettingsPage() {
         <p className="text-gray-500">Manage your account settings</p>
       </div>
       <div className="max-w-2xl">
-        <UserSettingsForm user={session.user} />
+        <UserSettingsForm user={user} />
       </div>
     </div>
   )

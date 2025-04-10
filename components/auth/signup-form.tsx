@@ -5,12 +5,12 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
+import { getSupabaseClient } from "@/lib/supabase-client"
 
 export default function SignUpForm() {
   const [email, setEmail] = useState("")
@@ -19,69 +19,44 @@ export default function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
-  const supabase = createClientComponentClient({
-    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
-  })
+  const supabase = getSupabaseClient()
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
 
     try {
-      // Sign up without email confirmation
-      const { data, error } = await supabase.auth.signUp({
+      // Sign up without email verification
+      const { error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
             name,
           },
-          emailRedirectTo: `${window.location.origin}/auth/callback`
+          // Skip email verification
+          emailRedirectTo: undefined,
         },
       })
 
-      if (error) {
-        throw error
-      }
+      if (signUpError) throw signUpError
 
-      // Create a profile manually to ensure it exists
-      if (data.user) {
-        // Insert into profiles table
-        const { error: profileError } = await supabase.from('profiles').insert({
-          id: data.user.id,
-          name: name,
-        })
+      // Immediately sign in after signup
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
 
-        if (profileError) {
-          console.error("Error creating profile:", profileError)
-          // Continue anyway since the trigger might handle it
-        }
+      if (signInError) throw signInError
 
-        // Sign in the user immediately
-        const { error: signInError } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        })
+      toast({
+        title: "Account created!",
+        description: "Welcome to Harmony. Your account has been created successfully.",
+      })
 
-        if (signInError) {
-          throw signInError
-        }
-
-        toast({
-          title: "Account created!",
-          description: "You have been signed in automatically.",
-        })
-
-        // Redirect to dashboard instead of login
-        router.push("/dashboard")
-      } else {
-        toast({
-          title: "Account created!",
-          description: "Please sign in with your new account.",
-        })
-        router.push("/login")
-      }
+      // Redirect to dashboard
+      router.push("/dashboard")
+      router.refresh()
     } catch (error: any) {
       toast({
         title: "Error creating account",
