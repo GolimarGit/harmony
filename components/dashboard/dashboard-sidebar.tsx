@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
-import { Calendar, CheckCircle2, ChevronDown, ChevronRight, Home, Inbox, Plus, Tag } from "lucide-react"
+import { Calendar, CheckCircle2, ChevronDown, ChevronRight, Clock, Home, Inbox, Plus, Tag } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useSupabase } from "@/components/supabase-provider"
 import { useToast } from "@/components/ui/use-toast"
@@ -113,6 +113,15 @@ export default function DashboardSidebar() {
             >
               <CheckCircle2 className="mr-2 h-4 w-4" />
               Completed
+            </Button>
+          </Link>
+          <Link href="/dashboard/focus">
+            <Button
+              variant="ghost"
+              className={cn("w-full justify-start", pathname === "/dashboard/focus" && "bg-gray-100 font-medium")}
+            >
+              <Clock className="mr-2 h-4 w-4" />
+              Focus
             </Button>
           </Link>
         </div>

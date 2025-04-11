@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import DashboardSidebar from "@/components/dashboard/dashboard-sidebar"
 import DashboardHeader from "@/components/dashboard/dashboard-header"
 import { createServerSupabaseClient } from "@/lib/supabase-server"
+import { PomodoroProvider } from "@/contexts/pomodoro-context"
 
 export default async function DashboardLayout({
   children,
@@ -24,7 +25,9 @@ export default async function DashboardLayout({
       <DashboardSidebar />
       <div className="flex flex-col flex-1 overflow-hidden">
         <DashboardHeader user={user} />
-        <main className="flex-1 overflow-y-auto p-4 md:p-6">{children}</main>
+        <PomodoroProvider>
+          <main className="flex-1 overflow-y-auto p-4 md:p-6">{children}</main>
+        </PomodoroProvider>
       </div>
     </div>
   )
