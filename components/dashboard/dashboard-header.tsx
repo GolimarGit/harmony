@@ -50,15 +50,15 @@ export default function DashboardHeader({ user }: DashboardHeaderProps) {
   const userInitials = getInitials(user.user_metadata?.name || user.email || "")
 
   return (
-    <header className="border-b bg-white">
+    <header className="border-b border-border bg-background">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-4 md:gap-6">
           <div className="relative w-full max-w-md">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
               placeholder="Search tasks..."
-              className="w-full bg-gray-100 pl-8 focus-visible:ring-rose-500"
+              className="w-full bg-muted pl-8 focus-visible:ring-rose-500"
             />
           </div>
         </div>

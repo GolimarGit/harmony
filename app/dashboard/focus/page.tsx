@@ -5,7 +5,7 @@ export default function FocusPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold">Focus Mode</h1>
-        <p className="text-gray-500">Use the Pomodoro Technique to stay focused and productive</p>
+        <p className="text-muted-foreground">Use the Pomodoro Technique to stay focused and productive</p>
       </div>
       <div className="mt-8">
         <PomodoroTimer />
@@ -19,7 +19,7 @@ export default function FocusPage() {
           <li>After four pomodoros, take a longer break (15-30 minutes)</li>
           <li>Repeat the process</li>
         </ol>
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
+        <div className="mt-6 p-4 bg-muted rounded-lg border border-border">
           <h3 className="font-medium mb-2">Benefits of the Pomodoro Technique</h3>
           <ul className="list-disc pl-5 space-y-1">
             <li>Improves focus and concentration</li>

@@ -101,9 +101,9 @@ export default function TaskList({ initialTasks, filter }: TaskListProps) {
   return (
     <div className="space-y-4">
       {tasks.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
+        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border p-8 text-center">
           <h3 className="mb-2 text-lg font-medium">No tasks for today</h3>
-          <p className="mb-4 text-sm text-gray-500">Add a new task to get started with your day.</p>
+          <p className="mb-4 text-sm text-muted-foreground">Add a new task to get started with your day.</p>
           <Button onClick={() => setIsAddTaskOpen(true)} className="bg-rose-500 hover:bg-rose-600">
             <Plus className="mr-2 h-4 w-4" />
             Add Task

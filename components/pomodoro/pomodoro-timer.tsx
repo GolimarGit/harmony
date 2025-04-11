@@ -38,7 +38,7 @@ export function PomodoroTimer() {
   const stateInfo = getStateInfo()
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto border-border">
       <CardHeader>
         <div className="flex justify-between items-center">
           <CardTitle>Pomodoro Timer</CardTitle>
@@ -49,7 +49,7 @@ export function PomodoroTimer() {
       <CardContent className="flex flex-col items-center">
         <div className="text-6xl font-bold my-8 font-mono">{formatTime(timeLeft)}</div>
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-sm text-gray-500">Pomodoros completed:</span>
+        <span className="text-sm text-muted-foreground">Pomodoros completed:</span>
           <Badge variant="secondary">{pomodorosCompleted}</Badge>
         </div>
         <div className="flex gap-2 mt-4">

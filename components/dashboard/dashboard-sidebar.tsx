@@ -71,8 +71,8 @@ export default function DashboardSidebar() {
   }
 
   return (
-    <div className="flex h-full w-64 flex-col border-r bg-white">
-      <div className="flex h-16 items-center border-b px-4">
+    <div className="flex h-full w-64 flex-col border-r border-border bg-background">
+      <div className="flex h-16 items-center border-b border-border px-4">
         <Link href="/dashboard" className="flex items-center gap-2" prefetch={true}>
           <span className="text-xl font-bold text-rose-500">Harmony</span>
         </Link>
@@ -82,7 +82,7 @@ export default function DashboardSidebar() {
           <Link href="/dashboard" prefetch={true}>
             <Button
               variant="ghost"
-              className={cn("w-full justify-start", pathname === "/dashboard" && "bg-gray-100 font-medium")}
+              className={cn("w-full justify-start", pathname === "/dashboard" && "bg-muted font-medium")}
             >
               <Home className="mr-2 h-4 w-4" />
               Today
@@ -91,7 +91,7 @@ export default function DashboardSidebar() {
           <Link href="/dashboard/inbox" prefetch={true}>
             <Button
               variant="ghost"
-              className={cn("w-full justify-start", pathname === "/dashboard/inbox" && "bg-gray-100 font-medium")}
+              className={cn("w-full justify-start", pathname === "/dashboard/inbox" && "bg-muted font-medium")}
             >
               <Inbox className="mr-2 h-4 w-4" />
               Inbox
@@ -100,7 +100,7 @@ export default function DashboardSidebar() {
           <Link href="/dashboard/upcoming" prefetch={true}>
             <Button
               variant="ghost"
-              className={cn("w-full justify-start", pathname === "/dashboard/upcoming" && "bg-gray-100 font-medium")}
+              className={cn("w-full justify-start", pathname === "/dashboard/upcoming" && "bg-muted font-medium")}
             >
               <Calendar className="mr-2 h-4 w-4" />
               Upcoming
@@ -109,7 +109,7 @@ export default function DashboardSidebar() {
           <Link href="/dashboard/completed" prefetch={true}>
             <Button
               variant="ghost"
-              className={cn("w-full justify-start", pathname === "/dashboard/completed" && "bg-gray-100 font-medium")}
+              className={cn("w-full justify-start", pathname === "/dashboard/completed" && "bg-muted font-medium")}
             >
               <CheckCircle2 className="mr-2 h-4 w-4" />
               Completed
@@ -118,7 +118,7 @@ export default function DashboardSidebar() {
           <Link href="/dashboard/focus">
             <Button
               variant="ghost"
-              className={cn("w-full justify-start", pathname === "/dashboard/focus" && "bg-gray-100 font-medium")}
+              className={cn("w-full justify-start", pathname === "/dashboard/focus" && "bg-muted font-medium")}
             >
               <Clock className="mr-2 h-4 w-4" />
               Focus

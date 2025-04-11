@@ -52,15 +52,15 @@ export default function TaskItem({ task, onToggleComplete, onDelete }: TaskItemP
       case 3:
         return "text-blue-500"
       default:
-        return "text-gray-500"
+        return "text-muted-foreground"
     }
   }
 
   return (
     <div
       className={cn(
-        "flex items-center justify-between rounded-lg border p-3 transition-colors",
-        task.completed ? "bg-gray-50" : "bg-white",
+        "flex items-center justify-between rounded-lg border border-border p-3 transition-colors",
+        task.completed ? "bg-muted/50" : "bg-background",
       )}
     >
       <div className="flex items-center gap-3">
@@ -70,11 +70,11 @@ export default function TaskItem({ task, onToggleComplete, onDelete }: TaskItemP
           className={cn("h-5 w-5 rounded-full", task.completed && "bg-rose-500 text-primary-foreground")}
         />
         <div className="space-y-1">
-          <p className={cn("font-medium", task.completed && "text-gray-400 line-through")}>{task.title}</p>
-          {task.description && <p className="text-sm text-gray-500 line-clamp-1">{task.description}</p>}
+          <p className={cn("font-medium", task.completed && "text-muted-foreground line-through")}>{task.title}</p>
+          {task.description && <p className="text-sm text-muted-foreground line-clamp-1">{task.description}</p>}
           {task.due_date && (
             <div className="flex items-center text-xs">
-              <Calendar className="mr-1 h-3 w-3 text-gray-500" />
+              <Calendar className="mr-1 h-3 w-3 text-muted-foreground" />
               <span className={getPriorityColor(task.priority)}>{format(new Date(task.due_date), "MMM d, yyyy")}</span>
             </div>
           )}
